@@ -4,6 +4,8 @@ import Home from "./routes/home/home.component";
 import Navigation from "./components/navigation/navigation.component";
 import Authentication from "./routes/authentication/authentication.component";
 
+import Blog from "./routes/blog/blog.component";
+
 const Shop = () => {
   return <h1>Shop page</h1>;
 };
@@ -15,6 +17,7 @@ const App = () => {
         <Route index element={<Home />} />
         <Route path='/auth' element={<Authentication />} />
         <Route path='/shop' element={<Shop />} />
+        <Route path='/blog' element={<Blog />} />
       </Route>
     </Routes>
   );

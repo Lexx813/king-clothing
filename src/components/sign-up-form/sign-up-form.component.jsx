@@ -21,8 +21,6 @@ const SignUpForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
 
-  console.log(formFields);
-
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
   };
@@ -30,7 +28,7 @@ const SignUpForm = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      alert("passwords do match");
+      alert("passwords don't match");
       return;
     }
     try {
@@ -38,6 +36,7 @@ const SignUpForm = () => {
         email,
         password
       );
+
       await createUserDocFromAuth(user, { displayName });
       resetFormFields();
     } catch (err) {
