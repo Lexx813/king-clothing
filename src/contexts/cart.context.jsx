@@ -1,5 +1,8 @@
 import { createContext, useState, useEffect } from "react";
 
+// HELPER FUNCTIONS
+
+// ADD + 1 Cart Item
 const addCartItem = (cartItems, ProductToAdd) => {
   const existingCartItem = cartItems.find(
     cartItem => cartItem.id === ProductToAdd.id
@@ -14,6 +17,8 @@ const addCartItem = (cartItems, ProductToAdd) => {
   }
   return [...cartItems, { ...ProductToAdd, quantity: 1 }];
 };
+
+// REMOVE ITEM - 1 Cart Item
 const removeCartItem = (cartItems, cartItemToRemove) => {
   const existingCartItem = cartItems.find(
     cartItem => cartItem.id === cartItemToRemove.id
@@ -29,10 +34,12 @@ const removeCartItem = (cartItems, cartItemToRemove) => {
   );
 };
 
+// CLEAR ITEM FROM CART
 const clearCartItem = (cartItems, cartItemToRemove) => {
   return cartItems.filter(cartItem => cartItem.id !== cartItemToRemove.id);
 };
 
+// CART CONTEXT CREATION
 export const CartContext = createContext({
   isCartOpen: false,
   setIsCartOpen: () => {},
@@ -44,6 +51,7 @@ export const CartContext = createContext({
   cartTotal: 0,
 });
 
+// CONTEXT PROVIDER
 export const CartProvider = ({ children }) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState([]);
