@@ -3,17 +3,18 @@ import { Link } from "react-router-dom";
 import { Title, SubjectContainer } from "./blog-card.styles";
 
 const BlogCard = ({ blog }) => {
-  const { imageUrl, title, description, subject } = blog;
+  const { name, imageUrl, title, description, subject } = blog;
   const slice = subject;
-  let result = slice.slice(0, 200) + "...";
+  let textChopped = slice.slice(0, 200) + "...";
   return (
     <div>
       <img src={imageUrl} alt={title} />
       <Title>{title}</Title>
+      <p>Written by: {name}</p>
       <span>{description}</span>
       <SubjectContainer>
-        <p>{result}</p>
-        <Link to='/auth'>Continue Reading</Link>
+        <p>{textChopped}</p>
+        <Link to='/'>Continue Reading</Link>
       </SubjectContainer>
     </div>
   );
