@@ -49,6 +49,7 @@ export const signInWithGoogleRedirect = () =>
 
 export const db = getFirestore();
 
+// ADD COLLECTIONS TO FIREBASE ONCE
 export const addCollectionAndDocuments = async (
   collectionKey,
   objectsToAdd,
@@ -58,7 +59,7 @@ export const addCollectionAndDocuments = async (
   const batch = writeBatch(db);
 
   objectsToAdd.forEach(object => {
-    const docRef = doc(collectionRef, object.title.toLowerCase());
+    const docRef = doc(collectionRef, object.userName.toLowerCase());
     batch.set(docRef, object);
   });
 
@@ -66,6 +67,7 @@ export const addCollectionAndDocuments = async (
   console.log("done");
 };
 
+// GET CATEGORY COLLECTIONS
 export const getCategoriesAndDocuments = async () => {
   const collectionRef = collection(db, "categories");
   const q = query(collectionRef);
@@ -73,7 +75,16 @@ export const getCategoriesAndDocuments = async () => {
   const querySnapshot = await getDocs(q);
   return querySnapshot.docs.map(docSnapshot => docSnapshot.data());
 };
+// GET BLOG COLLECTIONS
+export const getBlogsAndDocuments = async () => {
+  const collectionRef = collection(db, "blogs");
+  const q = query(collectionRef);
 
+  const querySnapshot = await getDocs(q);
+  return querySnapshot.docs.map(docSnapshot => docSnapshot.data());
+};
+
+// CREATE USER AND ADD IT TO FIREBASE USER COLLECTION
 export const createUserDocumentFromAuth = async (
   userAuth,
   additionalInformation = {}
@@ -102,7 +113,7 @@ export const createUserDocumentFromAuth = async (
 
   return userSnapshot;
 };
-
+////// AUTH
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
 
@@ -132,3 +143,4 @@ export const getCurrentUser = () => {
     );
   });
 };
+///////////////////////////////////
