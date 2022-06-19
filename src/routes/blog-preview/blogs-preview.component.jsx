@@ -11,8 +11,8 @@ const BlogsPreview = () => {
   return (
     <BlogContainer>
       {Object.keys(blogsMap).map(userName => {
-        const blogs = blogsMap[userName];
-        return <BlogPreview key={userName} blogs={blogs} />;
+        const blog = blogsMap[userName];
+        return <BlogPreview key={userName} blogs={blog} />;
       })}
     </BlogContainer>
   );
