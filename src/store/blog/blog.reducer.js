@@ -1,7 +1,7 @@
 import { BLOGS_ACTION_TYPES } from "./blog.types.js";
 
 export const BLOGS_INITIAL_STATE = {
-  blogsMap: [],
+  blogs: [],
   isLoading: false,
   error: null,
 };
@@ -10,10 +10,10 @@ export const blogsReducer = (state = BLOGS_INITIAL_STATE, action = {}) => {
   const { type, payload } = action;
 
   switch (type) {
-    case BLOGS_ACTION_TYPES.SET_BLOGS_MAP:
+    case BLOGS_ACTION_TYPES.SET_BLOGS:
       return {
         ...state,
-        blogsMap: payload,
+        blogs: payload,
       };
     default:
       return state;

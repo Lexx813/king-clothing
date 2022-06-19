@@ -1,11 +1,11 @@
 import BlogCard from "../blog-card/blog-card.component";
 
-const BlogPreview = ({ blogs }) => {
+const BlogPreview = ({ blogs, userName }) => {
   return (
     <div>
-      <h2>
-        <h1>{blogs.userName}</h1>
-      </h2>
+      {blogs.map(blog => (
+        <BlogCard key={blog.id} blog={blogs} />
+      ))}
       <div></div>
     </div>
   );

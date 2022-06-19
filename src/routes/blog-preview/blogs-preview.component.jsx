@@ -2,13 +2,12 @@ import { useSelector } from "react-redux";
 
 import BlogPreview from "../../components/blog-preview/blog-preview.component";
 // import Spinner from "../spinner/spinner.component";
-import { selectBlogsMap } from "../../store/blog/blog.selectors";
+import { selectBlogs } from "../../store/blog/blog.selectors";
 
 import { BlogContainer } from "./blogs-preview.styles";
 
 const BlogsPreview = () => {
-  const blogsMap = useSelector(selectBlogsMap);
-
+  const blogsMap = useSelector(selectBlogs);
   return (
     <BlogContainer>
       {Object.keys(blogsMap).map(userName => {

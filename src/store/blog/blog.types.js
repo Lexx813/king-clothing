@@ -1,5 +1,5 @@
 export const BLOGS_ACTION_TYPES = {
-  SET_BLOGS_MAP: "SET_BLOGS_MAP",
+  SET_BLOGS: "blog/SET_BLOGS",
 };
 
 // export const BLOGS_ACTION_TYPES = {

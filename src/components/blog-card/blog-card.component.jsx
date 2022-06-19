@@ -1,17 +1,18 @@
 import { Title, SubjectContainer } from "./blog-card.styles";
 
-const BlogCard = ({ blogs }) => {
-  const [subject] = blogs.content;
+const BlogCard = ({ blog }) => {
+  const [{ subject, description, title, imageUrl }] = blog;
   // const subjectSliced = subject;
   // let subjectChopped = subjectSliced.slice(0, 200) + "...";
-  console.log(subject);
+
   return (
     <div>
-      <Title>{blogs.userName}</Title>
-      <p></p>
+      <img src={imageUrl} alt='data' />
+      <Title>{title}</Title>
+      <p>{description}</p>
       <span></span>
       <SubjectContainer>
-        <p></p>
+        <p>{subject}</p>
       </SubjectContainer>
     </div>
   );

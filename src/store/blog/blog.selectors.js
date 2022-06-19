@@ -1,6 +1,11 @@
 import { createSelector } from "reselect";
 
-export const selectBlogsMap = state => state.blog.blogsMap;
+export const selectBlogs = state =>
+  state.blog.blogs.reduce((acc, blog) => {
+    const { userName, content } = blog;
+    acc[userName.toLowerCase()] = content;
+    return acc;
+  }, {});
 
 // export const selectBlogs = createSelector(
 //   [selectBlogsReducer],
