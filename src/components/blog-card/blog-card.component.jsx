@@ -2,9 +2,9 @@ import { Title, SubjectContainer } from "./blog-card.styles";
 
 const BlogCard = ({ blog }) => {
   const { subject, description, title, imageUrl } = blog;
-  // const subjectSliced = subject;
-  // let subjectChopped = subjectSliced.slice(0, 200) + "...";
-  console.log(blog);
+  const subjectSliced = subject;
+  let subjectChopped = subjectSliced.slice(0, 100) + "...";
+
   return (
     <div>
       <img src={imageUrl} alt='data' />
@@ -13,7 +13,7 @@ const BlogCard = ({ blog }) => {
       <span></span>
 
       <SubjectContainer>
-        <p>{subject}</p>
+        <p>{subjectChopped}</p>
       </SubjectContainer>
     </div>
   );

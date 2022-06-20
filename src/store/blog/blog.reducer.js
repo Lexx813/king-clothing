@@ -10,10 +10,19 @@ export const blogsReducer = (state = BLOGS_INITIAL_STATE, action = {}) => {
   const { type, payload } = action;
 
   switch (type) {
-    case BLOGS_ACTION_TYPES.SET_BLOGS:
+    case BLOGS_ACTION_TYPES.FETCH_BLOGS_START:
+      return { ...state, isLoading: true };
+    case BLOGS_ACTION_TYPES.FETCH_BLOGS_SUCCESS:
       return {
         ...state,
         blogs: payload,
+        isLoading: false,
+      };
+    case BLOGS_ACTION_TYPES.FETCH_BLOGS_FAILED:
+      return {
+        ...state,
+        error: payload,
+        isLoading: false,
       };
     default:
       return state;
