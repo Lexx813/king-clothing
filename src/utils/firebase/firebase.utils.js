@@ -18,6 +18,8 @@ import {
   writeBatch,
   query,
   getDocs,
+  updateDoc,
+  deleteField,
   QuerySnapshot,
 } from "firebase/firestore";
 
@@ -50,24 +52,35 @@ export const signInWithGoogleRedirect = () =>
 export const db = getFirestore();
 
 // ADD COLLECTIONS TO FIREBASE ONCE
-export const addCollectionAndDocuments = async (
-  collectionKey,
-  objectsToAdd,
-  field
-) => {
-  const collectionRef = collection(db, collectionKey);
-  const batch = writeBatch(db);
+// export const addCollectionAndDocuments = async (
+//   collectionKey,
+//   objectsToAdd,
+//   field
+// ) => {
+//   const collectionRef = collection(db, collectionKey);
+//   const batch = writeBatch(db);
 
-  objectsToAdd.forEach(object => {
-    const docRef = doc(collectionRef, object.userName.toLowerCase());
-    batch.set(docRef, object);
-  });
+//   objectsToAdd.forEach(object => {
+//     const docRef = doc(collectionRef, object.userName.toLowerCase());
+//     batch.set(docRef, object);
+//   });
 
-  await batch.commit();
-  console.log("done");
-};
+//   await batch.commit();
+//   console.log("done");
+// };
 
 // GET CATEGORY COLLECTIONS
+// export const deleteCategoriesAndDocuments = async () => {
+//   const blogtoDeleteRef = collection(db, "blogs");
+//   // const q = query(collectionRef);
+//   await updateDoc(blogtoDeleteRef, {
+//     hats: deleteField(),
+//   });
+
+// const querySnapshot = await getDocs(q);
+// return querySnapshot.docs.map(docSnapshot => docSnapshot.data());
+// };
+// deleteCategoriesAndDocuments();
 export const getCategoriesAndDocuments = async () => {
   const collectionRef = collection(db, "categories");
   const q = query(collectionRef);

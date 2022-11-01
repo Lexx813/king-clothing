@@ -1,22 +1,39 @@
-import { Routes, Route } from "react-router-dom";
+import { useState, useEffect, Fragment } from "react";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
+import BlogsList from "../../components/blogs-list/blogs-list.component";
+import Spinner from "../../components/spinner/spinner.component";
 
-import { fetchBlogsAsync } from "../../store/blog/blog.action";
+import {
+  selectBlogsMap,
+  selectBlogsIsLoading,
+} from "../../store/blog/blog.selectors";
 
-import BlogsPreview from "../blog-preview/blogs-preview.component";
+const Category = () => {
+  const { content } = useParams();
+  const blogsMap = useSelector(selectBlogsMap);
+  const isLoading = useSelector(selectBlogsIsLoading);
+  const [contents, setContents] = useState(blogsMap[content]);
 
-const BlogPage = () => {
-  const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchBlogsAsync());
-  }, []);
+    setContents(blogsMap[content]);
+  }, [content, blogsMap]);
+
   return (
-    <Routes>
-      <Route index element={<BlogsPreview />} />
-    </Routes>
+    <Fragment>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <div>
+          {contents &&
+            contents.map(content => (
+              <BlogsList key={content.id} content={content} />
+            ))}
+        </div>
+      )}
+    </Fragment>
   );
 };
 
-export default BlogPage;
+export default Category;
