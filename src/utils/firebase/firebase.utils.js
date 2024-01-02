@@ -15,12 +15,8 @@ import {
   getDoc,
   setDoc,
   collection,
-  writeBatch,
-  query,
+node  query,
   getDocs,
-  updateDoc,
-  deleteField,
-  QuerySnapshot,
 } from "firebase/firestore";
 
 const firebaseConfig = {
